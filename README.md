@@ -3,6 +3,19 @@
 Cross-platform desktop app (macOS · Windows · Linux) that helps you throw away the bad photos fast.
 Built with [Tauri v2](https://tauri.app) (Rust core + plain HTML/JS UI). Everything runs locally; no photo ever leaves your machine.
 
+## Screenshots
+
+> Screenshots use synthetic demo data (`ui/mock.js`), not real photos.
+
+**Series** — the best shot of every burst is kept (★), the rest is pre-marked for deletion:
+
+![Series](docs/screenshots/series.png)
+
+**Blurry** and **Overexposed** categories with live threshold sliders:
+
+![Blurry](docs/screenshots/blur.png)
+![Overexposed](docs/screenshots/over.png)
+
 ## What it does
 
 Pick one or more folders and PhotoCleaner scans them (in parallel, all CPU cores) and groups photos into:
@@ -13,6 +26,8 @@ Pick one or more folders and PhotoCleaner scans them (in parallel, all CPU cores
 | **Underexposed** | too dark shots (low mean brightness or many crushed black pixels) |
 | **Blurry** | out-of-focus / motion-blurred shots (variance of Laplacian) |
 | **Series** | bursts of near-identical shots taken close in time; the best one is picked automatically |
+| **Duplicates** | exact copies of the same photo (same image hash and file size) |
+| **Low resolution** | photos below a megapixel threshold (thumbnails, messenger downloads) |
 
 * Every threshold is a slider — the lists update instantly, no rescan needed.
 * Click a card to mark it for deletion (red), double-click or ⤢ for a full-size preview with ←/→ navigation and Space to mark.
@@ -38,7 +53,7 @@ npm run build      # produce an installer / .app / .msi in src-tauri/target/rele
 cd src-tauri && cargo test   # unit tests for the analysis code
 ```
 
-The UI has no build step (`ui/`). To iterate on it in a normal browser with fake data run `npm run ui` and open <http://localhost:1420> (`ui/mock.js` stands in for the Rust backend).
+The UI has no build step (`ui/`). To iterate on it in a normal browser with fake data run `npm run ui` and open <http://localhost:1420> (`ui/mock.js` stands in for the Rust backend). Open `ui/index.html#demo=series` (or `over`, `blur`, `dups`, `low`) to auto-load a demo state, as used for the screenshots.
 
 ### Layout
 
@@ -54,4 +69,4 @@ HEIC/RAW support, face/closed-eyes detection for series ranking, exact-duplicate
 
 ## License
 
-MIT
+[MIT](LICENSE) © Maksym Skorchenko

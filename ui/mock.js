@@ -69,4 +69,13 @@
     },
     dialog: { open: async () => ['/Users/demo/Pictures/Trip'], ask: async () => true },
   };
+
+  // Demo mode for README screenshots: ui/index.html#demo=series (over|under|blur|series|dups|low)
+  const demo = /demo=(\w+)/.exec(location.hash);
+  if (demo) window.addEventListener('load', () => {
+    const q = (s) => document.querySelector(s);
+    try { localStorage.clear(); } catch (e) { /* ignore */ }
+    setTimeout(() => q('#btnPick').click(), 100);
+    setTimeout(() => { q(`[data-tab=${demo[1]}]`)?.click(); if (/series|dups/.test(demo[1])) q('[data-act=autoMark]')?.click(); }, 4500);
+  });
 })();
