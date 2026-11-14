@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PhotoCleaner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">PhotoCleaner</div>
+    <button id="btnPick" class="primary" data-i18n="pick"></button>
+    <div id="folders" class="chips"></div>
+    <label class="check zoomctl" title="Size">🔍 <input type="range" id="cardSize" min="110" max="440" step="10"></label>
+    <label class="check"><input type="checkbox" id="recursive" checked> <span data-i18n="recursive"></span></label>
+    <button id="btnScan" data-i18n="rescan" disabled></button>
+    <button id="btnCancel" data-i18n="cancel" hidden></button>
+  </header>
+
+  <div id="progress" hidden><div class="bar"><i></i></div><span></span></div>
+  <nav id="tabs"></nav>
+  <section id="toolbar"></section>
+  <main id="content"></main>
+
+  <footer>
+    <div id="summary"></div>
+    <label class="check"><input type="checkbox" id="permanent"> <span data-i18n="permanent"></span></label>
+    <button id="btnDelete" class="danger" disabled></button>
+  </footer>
+
+  <div id="modal" hidden>
+    <div class="modal-bg" data-act="close"></div>
+    <button class="nav prev" data-act="prev">‹</button>
+    <figure>
+      <img id="modalImg" alt="">
+      <figcaption>
+        <div id="modalInfo"></div>
+        <button id="modalMark"></button>
+      </figcaption>
+    </figure>
+    <button class="nav next" data-act="next">›</button>
+    <button class="close" data-act="close">✕</button>
+  </div>
+  <div id="toast" hidden></div>
+
+  <script src="mock.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
